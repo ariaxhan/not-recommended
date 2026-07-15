@@ -1,0 +1,92 @@
+:root {
+  color-scheme: light;
+  --bone: #eee9dc;
+  --ink: #171813;
+  --muted: #65655c;
+  --line: rgba(23, 24, 19, 0.22);
+  --signal: #a63324;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 344px;
+  margin: 0;
+  background: var(--bone);
+  color: var(--ink);
+  font-family: "Avenir Next", "Gill Sans", sans-serif;
+}
+
+main {
+  padding: 25px 22px 21px;
+  border-top: 4px solid var(--signal);
+}
+
+.kicker {
+  margin: 0;
+  color: var(--signal);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 8px 0 21px;
+  font: 400 33px/1 Georgia, Charter, serif;
+  letter-spacing: -0.04em;
+}
+
+label {
+  display: flex;
+  min-height: 49px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+label:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--signal);
+}
+
+button {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 19px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--bone);
+  cursor: pointer;
+  font: 700 12px/1 "Avenir Next", "Gill Sans", sans-serif;
+}
+
+button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 3px solid #c54a36;
+  outline-offset: 3px;
+}
+
+.footnote {
+  margin: 13px 10px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: center;
+}
