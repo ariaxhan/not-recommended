@@ -5,6 +5,7 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "manifest.json"), "utf8"));
+const contentStyles = fs.readFileSync(path.join(root, "content.css"), "utf8");
 
 test("GIVEN the extension manifest WHEN inspected SHOULD use Manifest V3", () => {
   assert.equal(manifest.manifest_version, 3);
@@ -30,4 +31,9 @@ test("GIVEN all manifest file references WHEN inspected SHOULD exist", () => {
   for (const file of referenced) {
     assert.equal(fs.existsSync(path.join(root, file)), true, `${file} should exist`);
   }
+});
+
+test("GIVEN the intentional home WHEN hiding sidebars SHOULD remove the guide and reclaim its width", () => {
+  assert.match(contentStyles, /:has\(#not-recommended-home\)[^}]*#guide/);
+  assert.match(contentStyles, /:has\(#not-recommended-home\)[^}]*#page-manager[^}]*margin-left:\s*0\s*!important/);
 });

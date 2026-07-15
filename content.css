@@ -20,6 +20,16 @@ html[data-nr-enabled="true"][data-nr-hide-shorts="true"] ytd-mini-guide-entry-re
   display: none !important;
 }
 
+html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-home) ytd-app #guide,
+html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-home) ytd-mini-guide-renderer {
+  display: none !important;
+}
+
+html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-home) ytd-app[guide-persistent-and-visible] #page-manager,
+html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-home) ytd-app[mini-guide-visible] #page-manager {
+  margin-left: 0 !important;
+}
+
 .nr-home,
 .nr-home * {
   box-sizing: border-box;
