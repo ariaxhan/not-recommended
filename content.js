@@ -8,11 +8,7 @@
     hideComments: false,
     hideShorts: true,
     intentPrompt: true,
-    threads: [
-      "What survives civilizations?",
-      "How does infrastructure shape culture?",
-      "Where are my assumptions weakest?",
-    ],
+    threads: [],
     saved: [],
   };
   let settings = {...DEFAULTS};
@@ -75,7 +71,7 @@
     if (!list) return;
     list.replaceChildren();
     if (!settings.threads.length) {
-      list.append(element("p", "nr-empty", "No threads yet. Add the question your mind keeps circling."));
+      list.append(element("p", "nr-empty", "No saved searches."));
       return;
     }
     settings.threads.forEach((thread, index) => {
@@ -99,7 +95,7 @@
     if (!list) return;
     list.replaceChildren();
     if (!settings.saved.length) {
-      list.append(element("p", "nr-empty", "Nothing saved yet. Keep a video from its watch page."));
+      list.append(element("p", "nr-empty", "No saved videos."));
       return;
     }
     settings.saved.slice().reverse().forEach(video => {
@@ -126,7 +122,7 @@
     list.replaceChildren();
     status.textContent = errorMessage || "";
     if (!record?.detours?.length) {
-      list.append(element("p", "nr-empty", "Wikipedia is out of reach right now. Your questions still work."));
+      list.append(element("p", "nr-empty", "Wikipedia is unavailable."));
       return;
     }
     record.detours.forEach((detour, index) => {
@@ -142,9 +138,9 @@
       card.append(element("h3", "nr-detour-title", page.title));
       card.append(element("p", "nr-detour-summary", page.summary));
       const actions = element("div", "nr-detour-actions");
-      const follow = button("Follow the thread", "nr-button nr-button-dark");
+      const follow = button("Search YouTube", "nr-button nr-button-dark");
       follow.addEventListener("click", () => goToSearch(page.title));
-      const read = element("a", "nr-button nr-button-light", "Read on Wikipedia");
+      const read = element("a", "nr-button nr-button-light", "Wikipedia");
       read.href = page.url;
       read.target = "_blank";
       read.rel = "noopener noreferrer";
@@ -160,22 +156,22 @@
     const status = host.querySelector("[data-nr-detour-status]");
     host.dataset.nrLoading = "true";
     rerollButton.disabled = true;
-    rerollButton.textContent = reroll ? "Drawing three..." : "Opening the atlas...";
+    rerollButton.textContent = "Loading...";
     status.textContent = "";
     return sendMessage({type: reroll ? "REROLL_DETOURS" : "GET_DETOURS"})
       .then(response => {
         if (!document.contains(host)) return;
-        const message = response?.ok ? "" : "Could not draw a new set. Keeping the last complete detours.";
+        const message = response?.ok ? "" : "Could not load a new set. Showing the previous one.";
         renderDetourCards(host, response?.record, message);
       })
       .catch(() => {
-        if (document.contains(host)) renderDetourCards(host, null, "Wikipedia is unavailable. Try again when you are online.");
+        if (document.contains(host)) renderDetourCards(host, null, "Wikipedia is unavailable.");
       })
       .finally(() => {
         if (document.contains(host)) {
           delete host.dataset.nrLoading;
           rerollButton.disabled = false;
-          rerollButton.textContent = "Reroll all three";
+          rerollButton.textContent = "New set";
         }
       });
   }
@@ -186,21 +182,19 @@
 
     const mast = element("header", "nr-mast");
     const titleWrap = element("div", "nr-title-wrap");
-    titleWrap.append(element("p", "nr-kicker", "Not Recommended"), element("h1", "nr-title", "Start with a question."));
-    titleWrap.append(element("p", "nr-lede", "A finite way into YouTube. No feed to satisfy, no next thing waiting."));
-    const rule = element("div", "nr-strike-rule");
-    rule.setAttribute("aria-hidden", "true");
-    mast.append(titleWrap, rule);
+    titleWrap.append(element("p", "nr-kicker", "Not Recommended"), element("h1", "nr-title", "Skip the feed."));
+    titleWrap.append(element("p", "nr-lede", "Search YouTube directly. Or open something the algorithm did not pick."));
+    mast.append(titleWrap);
 
     const searchForm = element("form", "nr-search-form");
-    const searchLabel = element("label", "nr-sr-only", "Question to explore");
+    const searchLabel = element("label", "nr-sr-only", "Search YouTube");
     searchLabel.htmlFor = "nr-question";
     const searchInput = element("input", "nr-input");
     searchInput.id = "nr-question";
     searchInput.name = "question";
-    searchInput.placeholder = "What are you trying to understand?";
+    searchInput.placeholder = "What do you want to find?";
     searchInput.autocomplete = "off";
-    const searchButton = button("Explore", "nr-button nr-button-dark");
+    const searchButton = button("Search", "nr-button nr-button-dark");
     searchButton.type = "submit";
     searchForm.append(searchLabel, searchInput, searchButton);
     searchForm.addEventListener("submit", event => {
@@ -212,9 +206,9 @@
     const detours = element("section", "nr-detours-section");
     detours.setAttribute("aria-labelledby", "nr-detours-title");
     const detourHead = element("div", "nr-detour-head");
-    const heading = makeSectionHeading("Today’s detours", "Three places your feed probably wasn’t headed.", "Drawn independently from Wikipedia. Not personalized, ranked, or infinite.");
+    const heading = makeSectionHeading("Outside the feed", "Three random Wikipedia articles.", "No profile. No ranking.");
     heading.querySelector("h2").id = "nr-detours-title";
-    const reroll = button("Reroll all three", "nr-button nr-button-light");
+    const reroll = button("New set", "nr-button nr-button-light");
     reroll.dataset.nrReroll = "";
     reroll.addEventListener("click", () => loadDetours(home, true));
     detourHead.append(heading, reroll);
@@ -227,13 +221,13 @@
 
     const lower = element("div", "nr-lower-grid");
     const threads = element("section", "nr-panel");
-    threads.append(makeSectionHeading("Question threads", "Keep returning from different directions.", "These stay in this browser."));
+    threads.append(makeSectionHeading("Searches", "Saved searches.", "Stored in this browser."));
     const threadForm = element("form", "nr-add-form");
-    const threadLabel = element("label", "nr-sr-only", "Add a question thread");
+    const threadLabel = element("label", "nr-sr-only", "Save a search");
     threadLabel.htmlFor = "nr-thread-input";
     const threadInput = element("input", "nr-input");
     threadInput.id = "nr-thread-input";
-    threadInput.placeholder = "Add a question";
+    threadInput.placeholder = "Save a search";
     const add = button("Add", "nr-button nr-button-light");
     add.type = "submit";
     threadForm.append(threadLabel, threadInput, add);
@@ -251,7 +245,7 @@
     threads.append(threadForm, threadList);
 
     const saved = element("section", "nr-panel nr-panel-offset");
-    saved.append(makeSectionHeading("Saved for thought", "Things you chose to keep.", "Not whatever autoplay picked next."));
+    saved.append(makeSectionHeading("Videos", "Saved videos.", "Only what you picked."));
     const savedList = element("div", "nr-list");
     savedList.dataset.nrSaved = "";
     saved.append(savedList);
@@ -286,11 +280,11 @@
     dialog.setAttribute("aria-labelledby", "nr-intent-title");
     const form = element("form", "nr-dialog-card");
     form.method = "dialog";
-    const dialogTitle = element("h2", "nr-dialog-title", "Why this video?");
+    const dialogTitle = element("h2", "nr-dialog-title", "Why this one?");
     dialogTitle.id = "nr-intent-title";
-    form.append(element("p", "nr-kicker", "Before the play"), dialogTitle);
-    form.append(element("p", "nr-copy", "One sentence is enough. Naming the intention makes the click yours."));
-    const label = element("label", "nr-field-label", "I want to understand...");
+    form.append(element("p", "nr-kicker", "Optional"), dialogTitle);
+    form.append(element("p", "nr-copy", "Write a reason, or skip."));
+    const label = element("label", "nr-field-label", "Reason");
     label.htmlFor = "nr-intent-input";
     const input = element("input", "nr-input");
     input.id = "nr-intent-input";
@@ -330,9 +324,9 @@
     tools.dataset.nrVideoId = getVideo()?.id || "";
     tools.setAttribute("aria-label", "Not Recommended video tools");
     const head = element("div", "nr-watch-head");
-    head.append(element("span", "nr-watch-mark"), element("strong", "", "Not Recommended"));
+    head.append(element("strong", "", "Not Recommended"));
     const row = element("div", "nr-watch-row");
-    const save = button("Save for thought", "nr-watch-button");
+    const save = button("Save", "nr-watch-button");
     save.addEventListener("click", async () => {
       const video = getVideo();
       if (!video) return;
@@ -341,10 +335,9 @@
       save.textContent = "Saved";
     });
     const actions = [
-      ["Go deeper", () => goToSearch(`${getVideo()?.title || ""} deeper explanation lecture`)],
-      ["Challenge this", () => goToSearch(`${getVideo()?.title || ""} critique opposing view`)],
-      ["Cross disciplines", () => goToSearch(`${getVideo()?.title || ""} anthropology economics science history`)],
-      ["End session", () => location.assign("https://www.youtube.com/")],
+      ["More detail", () => goToSearch(`${getVideo()?.title || ""} deeper explanation lecture`)],
+      ["Find criticism", () => goToSearch(`${getVideo()?.title || ""} critique opposing view`)],
+      ["Stop watching", () => location.assign("https://www.youtube.com/")],
     ];
     row.append(save);
     actions.forEach(([label, handler]) => {

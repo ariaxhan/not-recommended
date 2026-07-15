@@ -6,6 +6,9 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "manifest.json"), "utf8"));
 const contentStyles = fs.readFileSync(path.join(root, "content.css"), "utf8");
+const contentSource = fs.readFileSync(path.join(root, "content.js"), "utf8");
+const popupMarkup = fs.readFileSync(path.join(root, "popup.html"), "utf8");
+const popupStyles = fs.readFileSync(path.join(root, "popup.css"), "utf8");
 
 test("GIVEN the extension manifest WHEN inspected SHOULD use Manifest V3", () => {
   assert.equal(manifest.manifest_version, 3);
@@ -41,4 +44,21 @@ test("GIVEN the intentional home WHEN hiding sidebars SHOULD remove the guide an
 test("GIVEN YouTube dark mode WHEN rendering the intentional home SHOULD use the dark editorial palette", () => {
   assert.match(contentStyles, /html\[dark\]\s*\{[^}]*--nr-bone:[^}]*--nr-ink:/s);
   assert.match(contentStyles, /html\[dark\] \.nr-home\s*\{[^}]*color-scheme:\s*dark/s);
+  assert.match(contentStyles, /--nr-bone:\s*var\(--yt-spec-base-background/);
+  assert.match(contentStyles, /--nr-bone:\s*var\(--yt-spec-base-background,\s*#(?:fff|0f0f0f)\)/);
+  assert.match(popupStyles, /prefers-color-scheme:\s*dark/);
+  assert.doesNotMatch(`${contentStyles}\n${popupStyles}`, /#c54a36|#b94837/);
+});
+
+test("GIVEN user-facing copy WHEN rendered SHOULD stay short and direct", () => {
+  assert.match(contentSource, /Skip the feed\./);
+  assert.match(contentSource, /No profile\. No ranking\./);
+  assert.match(popupMarkup, /Feed controls\./);
+  assert.doesNotMatch(`${contentSource}\n${popupMarkup}`, /Opening the atlas|Shape the room|Naming the intention|Keep returning from different directions|Cross disciplines|Related fields/);
+});
+
+test("GIVEN the core interface WHEN styled SHOULD avoid decorative marks and divider-heavy cards", () => {
+  assert.doesNotMatch(`${contentSource}\n${contentStyles}`, /nr-strike-rule|nr-watch-mark/);
+  assert.match(contentStyles, /\.nr-home\s*\{[^}]*background:\s*var\(--nr-bone\)/s);
+  assert.match(contentStyles, /\.nr-detour-card\s*\{[^}]*background:\s*transparent/s);
 });
