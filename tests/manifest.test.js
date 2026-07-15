@@ -9,6 +9,7 @@ const contentStyles = fs.readFileSync(path.join(root, "content.css"), "utf8");
 const contentSource = fs.readFileSync(path.join(root, "content.js"), "utf8");
 const popupMarkup = fs.readFileSync(path.join(root, "popup.html"), "utf8");
 const popupStyles = fs.readFileSync(path.join(root, "popup.css"), "utf8");
+const popupSource = fs.readFileSync(path.join(root, "popup.js"), "utf8");
 
 test("GIVEN the extension manifest WHEN inspected SHOULD use Manifest V3", () => {
   assert.equal(manifest.manifest_version, 3);
@@ -55,6 +56,11 @@ test("GIVEN user-facing copy WHEN rendered SHOULD stay short and direct", () => 
   assert.match(contentSource, /No profile\. No ranking\./);
   assert.match(popupMarkup, /Feed controls\./);
   assert.doesNotMatch(`${contentSource}\n${popupMarkup}`, /Opening the atlas|Shape the room|Naming the intention|Keep returning from different directions|Cross disciplines|Related fields/);
+});
+
+test("GIVEN a fresh install WHEN settings load SHOULD hide comments by default everywhere", () => {
+  assert.match(contentSource, /hideComments:\s*true/);
+  assert.match(popupSource, /hideComments:\s*true/);
 });
 
 test("GIVEN the core interface WHEN styled SHOULD avoid decorative marks and divider-heavy cards", () => {

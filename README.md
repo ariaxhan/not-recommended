@@ -9,7 +9,7 @@ Not Recommended replaces YouTube's infinite home feed with a finite, question-fi
 - Keeps the day's complete draw locally and lets you explicitly reroll all three.
 - Keeps the previous complete draw visible if a reroll fails.
 - Hides Shorts and the watch-page recommendation sidebar by default.
-- Can hide comments and ask for your intention before a video.
+- Hides comments by default and can ask why before a video.
 - Stores question threads and up to 100 saved videos in Chrome's local extension storage.
 - Adds deliberate watch-page exits: go deeper, challenge this, cross disciplines, and end session.
 
