@@ -37,3 +37,8 @@ test("GIVEN the intentional home WHEN hiding sidebars SHOULD remove the guide an
   assert.match(contentStyles, /:has\(#not-recommended-home\)[^}]*#guide/);
   assert.match(contentStyles, /:has\(#not-recommended-home\)[^}]*#page-manager[^}]*margin-left:\s*0\s*!important/);
 });
+
+test("GIVEN YouTube dark mode WHEN rendering the intentional home SHOULD use the dark editorial palette", () => {
+  assert.match(contentStyles, /html\[dark\]\s*\{[^}]*--nr-bone:[^}]*--nr-ink:/s);
+  assert.match(contentStyles, /html\[dark\] \.nr-home\s*\{[^}]*color-scheme:\s*dark/s);
+});

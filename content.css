@@ -8,6 +8,16 @@
   --nr-forest: #264b3c;
 }
 
+html[dark] {
+  --nr-bone: #151612;
+  --nr-paper: #20221c;
+  --nr-ink: #f0eadc;
+  --nr-muted: #aaa89d;
+  --nr-line: rgba(240, 234, 220, 0.22);
+  --nr-signal: #e26b56;
+  --nr-forest: #7aa58e;
+}
+
 html[data-nr-enabled="true"] ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
 html[data-nr-enabled="true"] ytd-browse[page-subtype="home"] #chips-wrapper,
 html[data-nr-enabled="true"] ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer,
@@ -43,6 +53,16 @@ html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-h
     linear-gradient(90deg, rgba(166, 51, 36, 0.06) 1px, transparent 1px) clamp(20px, 6vw, 104px) 0 / 25% 100% no-repeat,
     var(--nr-bone);
   font-family: Georgia, Charter, "Times New Roman", serif;
+}
+
+html[dark] .nr-home {
+  background:
+    radial-gradient(circle at 78% 4%, rgba(122, 165, 142, 0.08), transparent 27%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 24%),
+    linear-gradient(90deg, rgba(226, 107, 86, 0.09) 1px, transparent 1px) clamp(20px, 6vw, 104px) 0 / 25% 100% no-repeat,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.018), transparent 42%),
+    var(--nr-bone);
+  color-scheme: dark;
 }
 
 .nr-mast {
@@ -124,7 +144,7 @@ html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-h
 }
 
 .nr-input::placeholder {
-  color: #77766c;
+  color: color-mix(in srgb, var(--nr-muted) 85%, var(--nr-ink));
   opacity: 1;
 }
 
