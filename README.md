@@ -44,3 +44,7 @@ YouTube changes its internal page structure. If an injected surface disappears a
 ## Network and storage
 
 The background worker makes fixed requests to the English Wikipedia Action API only when it needs a daily draw or the user rerolls. It requests main-namespace, nonredirect pages and stores the complete set in `chrome.storage.local`. See [PRIVACY.md](PRIVACY.md).
+
+## License
+
+[MIT](LICENSE)

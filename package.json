@@ -3,6 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "description": "A question-first, non-personalized YouTube extension.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariaxhan/not-recommended.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "youtube",
+    "manifest-v3",
+    "privacy",
+    "non-personalized",
+    "recommendations",
+    "wikipedia"
+  ],
   "scripts": {
     "test": "node --test",
     "lint": "node scripts/check.mjs",
