@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f1eee6">
+    <meta name="description" content="Privacy policy for the Not Recommended Chrome extension and website.">
+    <title>Privacy — Not Recommended</title>
+    <link rel="icon" href="/assets/icon128.png" sizes="128x128">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Not Recommended home">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        Not Recommended
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+      </nav>
+    </header>
+
+    <main class="policy">
+      <header class="policy-intro">
+        <p class="eyebrow">The short version</p>
+        <h1>We don’t want your data.</h1>
+        <p>Not Recommended has no accounts, analytics, ads, tracking, or telemetry. Your extension data stays in your browser.</p>
+        <p class="updated">Last updated: July 16, 2026</p>
+      </header>
+
+      <article>
+        <section>
+          <span class="policy-number">01</span>
+          <div>
+            <h2>What the extension stores</h2>
+            <p>The extension stores the following in <code>chrome.storage.local</code>, inside the Chrome profile where it is installed:</p>
+            <ul>
+              <li>display settings;</li>
+              <li>question threads;</li>
+              <li>saved YouTube video titles, IDs, URLs, and save times;</li>
+              <li>your most recent intention sentence, if you enter one; and</li>
+              <li>the current Wikipedia detour set and draw date.</li>
+            </ul>
+            <p>This information is not sent to us. There is no account or remote database.</p>
+          </div>
+        </section>
+
+        <section>
+          <span class="policy-number">02</span>
+          <div>
+            <h2>Where the extension connects</h2>
+            <p>The content script runs on <code>youtube.com</code> so it can replace and simplify YouTube surfaces. Your use of YouTube remains subject to YouTube’s own terms and privacy practices.</p>
+            <p>The background worker makes fixed, credential-free requests to the English Wikipedia API when it needs a daily detour set or when you request a new one. It does not send your saved videos, questions, settings, intentions, YouTube activity, or stored identifiers to Wikipedia.</p>
+            <p>The worker accepts only its fixed Wikipedia request. It cannot be turned into a general network proxy.</p>
+          </div>
+        </section>
+
+        <section>
+          <span class="policy-number">03</span>
+          <div>
+            <h2>What this website does</h2>
+            <p>This website is static. It has no forms, accounts, analytics, advertising, tracking scripts, or cookies set by Not Recommended.</p>
+            <p>Cloudflare delivers and protects the website. Like other hosting providers, Cloudflare may process technical request information such as IP addresses, routing data, and security signals. That processing is governed by <a href="https://www.cloudflare.com/privacypolicy/" rel="noreferrer">Cloudflare’s privacy policy</a>.</p>
+          </div>
+        </section>
+
+        <section>
+          <span class="policy-number">04</span>
+          <div>
+            <h2>How to remove your data</h2>
+            <p>You can delete individual question threads and saved videos from the extension’s intentional home screen. Removing the extension through Chrome removes its local extension storage.</p>
+          </div>
+        </section>
+
+        <section>
+          <span class="policy-number">05</span>
+          <div>
+            <h2>Changes and questions</h2>
+            <p>If this policy changes, the date at the top of this page will change too. For privacy questions, use the support contact shown on the extension’s Chrome Web Store listing.</p>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <p>Nothing hidden in the fine print. There barely is fine print.</p>
+      <div>
+        <a href="/">Home</a>
+        <span>© 2026 Not Recommended</span>
+      </div>
+    </footer>
+  </body>
+</html>

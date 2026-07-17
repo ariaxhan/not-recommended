@@ -1,10 +1,23 @@
 :root {
   color-scheme: light;
-  --bone: #eee9dc;
-  --ink: #171813;
-  --muted: #65655c;
-  --line: rgba(23, 24, 19, 0.22);
-  --signal: #a63324;
+  --bone: #fff;
+  --paper: #f2f2f2;
+  --ink: #0f0f0f;
+  --muted: #606060;
+  --line: rgba(15, 15, 15, 0.16);
+  --signal: #065fd4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bone: #0f0f0f;
+    --paper: #272727;
+    --ink: #f1f1f1;
+    --muted: #aaa;
+    --line: rgba(241, 241, 241, 0.16);
+    --signal: #3ea6ff;
+  }
 }
 
 * {
@@ -16,27 +29,31 @@ body {
   margin: 0;
   background: var(--bone);
   color: var(--ink);
-  font-family: "Avenir Next", "Gill Sans", sans-serif;
+  font-family: "YouTube Sans", sans-serif;
 }
 
 main {
   padding: 25px 22px 21px;
-  border-top: 4px solid var(--signal);
 }
 
 .kicker {
   margin: 0;
-  color: var(--signal);
+  color: var(--muted);
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.17em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 h1 {
-  margin: 8px 0 21px;
-  font: 400 33px/1 Georgia, Charter, serif;
-  letter-spacing: -0.04em;
+  margin: 7px 0 18px;
+  font: 600 23px/1.15 "YouTube Sans", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.settings {
+  border: 1px solid var(--line);
+  background: var(--paper);
 }
 
 label {
@@ -45,14 +62,15 @@ label {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  border-top: 1px solid var(--line);
+  padding: 0 12px;
+  border-bottom: 1px solid var(--line);
   font-size: 13px;
   font-weight: 600;
   line-height: 1.3;
 }
 
 label:last-child {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 0;
 }
 
 input[type="checkbox"] {
@@ -66,11 +84,11 @@ button {
   min-height: 44px;
   margin-top: 19px;
   border: 1px solid var(--ink);
-  border-radius: 0;
+  border-radius: 18px;
   background: var(--ink);
   color: var(--bone);
   cursor: pointer;
-  font: 700 12px/1 "Avenir Next", "Gill Sans", sans-serif;
+  font: 700 12px/1 "YouTube Sans", sans-serif;
 }
 
 button:hover {
@@ -79,14 +97,14 @@ button:hover {
 }
 
 :focus-visible {
-  outline: 3px solid #c54a36;
+  outline: 3px solid var(--signal);
   outline-offset: 3px;
 }
 
 .footnote {
-  margin: 13px 10px 0;
+  margin: 13px 0 0;
   color: var(--muted);
   font-size: 11px;
   line-height: 1.45;
-  text-align: center;
+  text-align: left;
 }

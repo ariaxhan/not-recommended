@@ -2,6 +2,8 @@
 
 Not Recommended replaces YouTube's infinite home feed with a finite, question-first starting point.
 
+[Website](https://not-recommended.ariaxhan.workers.dev/) · [Privacy policy](https://not-recommended.ariaxhan.workers.dev/privacy/)
+
 ## What it does
 
 - Replaces the YouTube homepage with **Start with a question**.
@@ -9,7 +11,7 @@ Not Recommended replaces YouTube's infinite home feed with a finite, question-fi
 - Keeps the day's complete draw locally and lets you explicitly reroll all three.
 - Keeps the previous complete draw visible if a reroll fails.
 - Hides Shorts and the watch-page recommendation sidebar by default.
-- Can hide comments and ask for your intention before a video.
+- Hides comments by default and can ask why before a video.
 - Stores question threads and up to 100 saved videos in Chrome's local extension storage.
 - Adds deliberate watch-page exits: go deeper, challenge this, cross disciplines, and end session.
 
@@ -42,3 +44,7 @@ YouTube changes its internal page structure. If an injected surface disappears a
 ## Network and storage
 
 The background worker makes fixed requests to the English Wikipedia Action API only when it needs a daily draw or the user rerolls. It requests main-namespace, nonredirect pages and stores the complete set in `chrome.storage.local`. See [PRIVACY.md](PRIVACY.md).
+
+## License
+
+[MIT](LICENSE)

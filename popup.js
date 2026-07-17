@@ -4,7 +4,7 @@ const DEFAULTS = {
   enabled: true,
   hideSidebar: true,
   hideShorts: true,
-  hideComments: false,
+  hideComments: true,
   intentPrompt: true,
 };
 
