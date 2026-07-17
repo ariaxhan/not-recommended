@@ -2,6 +2,8 @@
 
 Not Recommended replaces YouTube's infinite home feed with a finite, question-first starting point.
 
+[Website](https://not-recommended.ariaxhan.workers.dev/) · [Privacy policy](https://not-recommended.ariaxhan.workers.dev/privacy/)
+
 ## What it does
 
 - Replaces the YouTube homepage with **Start with a question**.
