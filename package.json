@@ -7,9 +7,15 @@
     "test": "node --test",
     "lint": "node scripts/check.mjs",
     "verify": "npm run test && npm run lint",
-    "package": "node scripts/package.mjs"
+    "package": "node scripts/package.mjs",
+    "site:dev": "wrangler dev",
+    "site:check": "wrangler deploy --dry-run",
+    "site:deploy": "wrangler deploy"
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "wrangler": "^4.111.0"
   }
 }
