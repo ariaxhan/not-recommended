@@ -117,6 +117,7 @@ lane :submit do |options|
       api_key: api_key,
       platform: platform,
       screenshots_path: platform == "osx" ? "fastlane/screenshots-macos" : "fastlane/screenshots",
+      app_rating_config_path: "fastlane/rating.json",
       skip_binary_upload: true,
       skip_screenshots: false,
       overwrite_screenshots: true,

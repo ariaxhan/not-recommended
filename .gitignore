@@ -6,3 +6,4 @@ node_modules/
 safari/**/xcuserdata/
 safari/**/build/
 build/
+fastlane/metadata/review_information/phone_number.txt
