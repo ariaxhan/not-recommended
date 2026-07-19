@@ -1,0 +1,19 @@
+Not Recommended is a Safari extension that gives you a finite, question-first way into YouTube.
+
+Instead of an infinite recommendation feed, the YouTube homepage becomes a quiet page with a single question: what do you want to find? Search directly, keep a short list of saved searches and saved videos, and step outside the algorithm entirely with three random Wikipedia articles as detours.
+
+WHAT IT DOES
+
+- Replaces the YouTube home feed with a calm, search-first page
+- Hides related-video sidebars, comments, and Shorts (each one optional)
+- Asks "Why this one?" before you watch, so watching stays a choice
+- Saves searches and videos locally, only what you picked
+- Offers three random Wikipedia articles, no profile, no ranking
+
+WHAT IT DOES NOT DO
+
+- No accounts, no sign-in
+- No analytics, no tracking, no data leaves your device
+- No cloud sync; everything is stored in your browser
+
+Works on youtube.com in Safari on iPhone, iPad, and Mac. Enable it in Safari Settings > Extensions, grant access to youtube.com, and the feed is gone.
