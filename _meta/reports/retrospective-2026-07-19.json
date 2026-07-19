@@ -1,0 +1,38 @@
+{
+  "schema": "kernel.retrospective-result/v1",
+  "identity": {
+    "created": "2026-07-19T08:30:00Z",
+    "scope": "cross-project"
+  },
+  "analyzed": {
+    "learnings": 5,
+    "clusters": 2,
+    "merged": 0,
+    "archived": 0,
+    "contradictions_resolved": 0
+  },
+  "mutations": [
+    {
+      "op": "create",
+      "artifact_type": "skill",
+      "path": "CodingVault/.claude/skills/safari-extension-store/SKILL.md",
+      "reason": "Full chrome-extension-to-App-Store process proven in one session; recurring for any future extension; parallel pipeline to the fastlane mobile playbook",
+      "evidence": "not-recommended: both platforms WAITING_FOR_REVIEW 2026-07-19; chronicle 2026-07-19-safari-port-app-store-submission.md; 3 agentdb learnings",
+      "reinforced": 1,
+      "status": "applied"
+    },
+    {
+      "op": "modify",
+      "artifact_type": "prose",
+      "path": "CodingVault/.claude/CLAUDE.md",
+      "reason": "One-line pointer placing the safari-extension pipeline beside the fastlane mobile rule",
+      "evidence": "skill discoverability; CLAUDE.md is the routing layer",
+      "reinforced": 1,
+      "status": "applied"
+    }
+  ],
+  "project_fit": {
+    "missing": [],
+    "dormant": []
+  }
+}
