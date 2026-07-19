@@ -42,6 +42,7 @@
   function applyFlags() {
     const root = document.documentElement;
     root.dataset.nrEnabled = String(Boolean(settings.enabled));
+    root.dataset.nrHome = String(isHome());
     root.dataset.nrHideSidebar = String(Boolean(settings.hideSidebar));
     root.dataset.nrHideComments = String(Boolean(settings.hideComments));
     root.dataset.nrHideShorts = String(Boolean(settings.hideShorts));
@@ -260,13 +261,15 @@
 
   function mountHome() {
     if (!settings.enabled || !isHome() || document.getElementById("not-recommended-home")) return;
-    const browse = document.querySelector("ytd-browse[page-subtype='home']");
+    const browse = document.querySelector("ytd-browse[page-subtype='home']")
+      || document.querySelector("ytm-browse");
     if (browse) browse.prepend(createHome());
   }
 
   function getVideo() {
     const id = new URL(location.href).searchParams.get("v");
     const title = document.querySelector("h1.ytd-watch-metadata yt-formatted-string")?.textContent?.trim()
+      || document.querySelector(".slim-video-information-title")?.textContent?.trim()
       || document.title.replace(/\s+-\s+YouTube$/, "").trim();
     return Core.normalizeYouTubeVideo({id, title, url: `https://www.youtube.com/watch?v=${encodeURIComponent(id || "")}`});
   }
@@ -358,7 +361,9 @@
       existing.remove();
       document.getElementById("nr-intent-dialog")?.remove();
     }
-    const target = document.querySelector("#above-the-fold") || document.querySelector("ytd-watch-metadata");
+    const target = document.querySelector("#above-the-fold")
+      || document.querySelector("ytd-watch-metadata")
+      || document.querySelector("ytm-slim-video-metadata-section-renderer");
     if (!target) return;
     const tools = createWatchTools();
     target.append(tools);
@@ -368,6 +373,7 @@
   function reconcile() {
     clearTimeout(reconcileTimer);
     reconcileTimer = null;
+    document.documentElement.dataset.nrHome = String(isHome());
     if (!isHome()) document.getElementById("not-recommended-home")?.remove();
     if (!isWatch()) {
       document.getElementById("not-recommended-watch-tools")?.remove();

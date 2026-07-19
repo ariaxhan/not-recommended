@@ -20,8 +20,19 @@ test("GIVEN extension permissions WHEN inspected SHOULD stay narrowly scoped", (
   assert.deepEqual(manifest.permissions, ["storage"]);
   assert.deepEqual(manifest.host_permissions, [
     "https://www.youtube.com/*",
+    "https://m.youtube.com/*",
     "https://en.wikipedia.org/*",
   ]);
+});
+
+test("GIVEN mobile YouTube (m.youtube.com) WHEN the extension runs SHOULD cover the ytm-* surface", () => {
+  const matches = manifest.content_scripts[0].matches;
+  assert.ok(matches.includes("https://m.youtube.com/*"), "content script should match m.youtube.com");
+  assert.match(contentSource, /ytm-browse/);
+  assert.match(contentSource, /ytm-slim-video-metadata-section-renderer/);
+  assert.match(contentSource, /slim-video-information-title/);
+  assert.match(contentStyles, /ytm-rich-grid-renderer/);
+  assert.match(contentStyles, /section-identifier="related-items"/);
 });
 
 test("GIVEN all manifest file references WHEN inspected SHOULD exist", () => {
