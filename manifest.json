@@ -6,6 +6,7 @@
   "permissions": ["storage"],
   "host_permissions": [
     "https://www.youtube.com/*",
+    "https://m.youtube.com/*",
     "https://en.wikipedia.org/*"
   ],
   "background": {
@@ -13,7 +14,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["https://www.youtube.com/*", "https://m.youtube.com/*"],
       "js": ["lib/core.js", "content.js"],
       "css": ["content.css"],
       "run_at": "document_idle"

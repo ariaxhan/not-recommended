@@ -27,6 +27,20 @@ html[data-nr-enabled="true"][data-nr-hide-shorts="true"] ytd-mini-guide-entry-re
   display: none !important;
 }
 
+/* m.youtube.com (iOS Safari): ytm-* element set, no page-subtype attribute on
+   browse, so home scoping rides the data-nr-home flag set by the content script. */
+html[data-nr-enabled="true"][data-nr-home="true"] ytm-browse ytm-rich-grid-renderer,
+html[data-nr-enabled="true"][data-nr-home="true"] ytm-browse ytm-rich-section-renderer,
+html[data-nr-enabled="true"][data-nr-home="true"] ytm-browse ytm-chip-cloud-renderer,
+html[data-nr-enabled="true"][data-nr-hide-sidebar="true"] ytm-item-section-renderer[section-identifier="related-items"],
+html[data-nr-enabled="true"][data-nr-hide-comments="true"] ytm-comment-section-renderer,
+html[data-nr-enabled="true"][data-nr-hide-comments="true"] ytm-comments-entry-point-header-renderer,
+html[data-nr-enabled="true"][data-nr-hide-comments="true"] ytm-item-section-renderer[section-identifier="comments-entry-point"],
+html[data-nr-enabled="true"][data-nr-hide-shorts="true"] ytm-reel-shelf-renderer,
+html[data-nr-enabled="true"][data-nr-hide-shorts="true"] ytm-pivot-bar-item-renderer:has([class*="pivot-shorts"]) {
+  display: none !important;
+}
+
 html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-home) ytd-app #guide,
 html[data-nr-enabled="true"][data-nr-hide-sidebar="true"]:has(#not-recommended-home) ytd-mini-guide-renderer {
   display: none !important;
@@ -57,6 +71,12 @@ html[dark] .nr-home {
 
 .nr-mast {
   max-width: 760px;
+  /* m.youtube.com styles bare <header> elements (fixed 48px top bar); reset so
+     the masthead sizes to its content. */
+  height: auto;
+  position: static;
+  padding: 0;
+  background: none;
 }
 
 .nr-kicker {

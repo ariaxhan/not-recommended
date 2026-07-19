@@ -3,3 +3,7 @@ node_modules/
 .wrangler/
 .DS_Store
 *.log
+safari/**/xcuserdata/
+safari/**/build/
+build/
+fastlane/metadata/review_information/phone_number.txt

@@ -1,0 +1,5 @@
+This app is a Safari Web Extension. To test:
+1. Open the app once, then enable "Not Recommended" in Safari Settings > Extensions (iOS: Settings > Apps > Safari > Extensions).
+2. Grant it access to youtube.com and en.wikipedia.org.
+3. Visit youtube.com: the home feed is replaced by a search-first page with three random Wikipedia detours. Open any video to see the save/search tools and the optional "Why this one?" prompt.
+No account or demo credentials are needed; the extension has no login and stores all data locally in the browser.

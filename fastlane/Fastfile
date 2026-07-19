@@ -1,0 +1,131 @@
+APPLE_TEAM_ID = "8TBWTVY269"
+BUNDLE_ID = "com.notrecommended.app"
+KEY_ID = "BW679977YC"
+ISSUER_ID = "763da199-3fe9-4656-a502-49e8f7a2d925"
+# Key lives outside the repo on purpose — this repo is public.
+KEY_PATH = File.expand_path("~/.appstoreconnect/private_keys/AuthKey_#{KEY_ID}.p8")
+XCODEPROJ = "safari/Not Recommended/Not Recommended.xcodeproj"
+
+def asc_key
+  app_store_connect_api_key(key_id: KEY_ID, issuer_id: ISSUER_ID, key_filepath: KEY_PATH)
+end
+
+# xcodebuild authenticates for automatic (cloud) provisioning via these flags;
+# build_app/gym has no api_key option. Path must be absolute.
+AUTH_XCARGS = "DEVELOPMENT_TEAM=#{APPLE_TEAM_ID} CODE_SIGN_STYLE=Automatic " \
+              "-allowProvisioningUpdates " \
+              "-authenticationKeyID #{KEY_ID} " \
+              "-authenticationKeyIssuerID #{ISSUER_ID} " \
+              "-authenticationKeyPath #{KEY_PATH}"
+
+lane :create_app do
+  asc_key # sets the Spaceship token produce authenticates with
+  produce(
+    skip_devcenter: true, # App ID registers itself during the first archive
+    app_identifier: BUNDLE_ID,
+    app_name: "Not Recommended",
+    language: "en-US",
+    app_version: "1.0",
+    sku: "not-recommended-001",
+    platforms: ["ios", "osx"],
+  )
+end
+
+desc "Archive the iOS app (no upload)"
+lane :ios_build do
+  build_app(
+    project: XCODEPROJ,
+    scheme: "Not Recommended (iOS)",
+    configuration: "Release",
+    export_method: "app-store",
+    export_options: { signingStyle: "automatic", teamID: APPLE_TEAM_ID },
+    xcargs: AUTH_XCARGS,
+    output_directory: "build",
+    output_name: "NotRecommended-iOS.ipa",
+    clean: true,
+  )
+end
+
+desc "Archive the macOS app (no upload)"
+lane :mac_build do
+  build_mac_app(
+    project: XCODEPROJ,
+    scheme: "Not Recommended (macOS)",
+    configuration: "Release",
+    export_method: "app-store",
+    export_options: { signingStyle: "automatic", teamID: APPLE_TEAM_ID },
+    xcargs: AUTH_XCARGS,
+    output_directory: "build",
+    clean: true,
+  )
+end
+
+desc "Build + upload the iOS app"
+lane :ios_release do
+  api_key = asc_key
+  build_app(
+    project: XCODEPROJ,
+    scheme: "Not Recommended (iOS)",
+    configuration: "Release",
+    export_method: "app-store",
+    export_options: { signingStyle: "automatic", teamID: APPLE_TEAM_ID },
+    xcargs: AUTH_XCARGS,
+    output_directory: "build",
+    output_name: "NotRecommended-iOS.ipa",
+    clean: true,
+  )
+  deliver(
+    api_key: api_key,
+    platform: "ios",
+    ipa: "build/NotRecommended-iOS.ipa",
+    skip_screenshots: true,
+    skip_metadata: true,
+    precheck_include_in_app_purchases: false,
+    force: true,
+  )
+end
+
+desc "Build + upload the macOS app"
+lane :mac_release do
+  api_key = asc_key
+  build_mac_app(
+    project: XCODEPROJ,
+    scheme: "Not Recommended (macOS)",
+    configuration: "Release",
+    export_method: "app-store",
+    export_options: { signingStyle: "automatic", teamID: APPLE_TEAM_ID },
+    xcargs: AUTH_XCARGS,
+    output_directory: "build",
+    clean: true,
+  )
+  deliver(
+    api_key: api_key,
+    platform: "osx",
+    pkg: "build/Not Recommended.pkg",
+    skip_screenshots: true,
+    skip_metadata: true,
+    precheck_include_in_app_purchases: false,
+    force: true,
+  )
+end
+
+desc "Push metadata + screenshots and submit both platforms for review"
+lane :submit do |options|
+  api_key = asc_key
+  ["ios", "osx"].each do |platform|
+    deliver(
+      api_key: api_key,
+      platform: platform,
+      screenshots_path: platform == "osx" ? "fastlane/screenshots-macos" : "fastlane/screenshots",
+      app_rating_config_path: "fastlane/rating.json",
+      skip_binary_upload: true,
+      skip_screenshots: false,
+      overwrite_screenshots: true,
+      precheck_include_in_app_purchases: false,
+      force: true,
+      submit_for_review: options[:review] == true,
+      automatic_release: true,
+      submission_information: { add_id_info_uses_idfa: false, export_compliance_uses_encryption: false },
+    )
+  end
+end
