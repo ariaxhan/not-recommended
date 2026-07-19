@@ -1,6 +1,12 @@
 # Product Hunt launch kit — Not Recommended
 
-Status: **prepped, gated on Apple approval** (iOS + macOS both WAITING_FOR_REVIEW as of 2026-07-19).
+Status: **DRAFT CREATED on Product Hunt, gated on Apple approval** (iOS + macOS both
+WAITING_FOR_REVIEW as of 2026-07-19).
+Draft page: https://www.producthunt.com/products/not-recommended?launch=not-recommended
+(admin bar has Schedule / Edit Launch / Dashboard). All required fields 100% complete:
+name, tagline, description, links (site + CWS + GitHub, flagged open source), 3 launch tags,
+thumbnail, gallery (dark hero first), maker = @ariaxhan (solo), free, bootstrapped, first
+comment queued. Remaining on launch day: add App Store link, click Schedule (12:01 AM PT).
 Trigger to launch: Safari approved on at least macOS. If review drags past ~1 week, launch Chrome-only
 and add Safari as a launch-page update comment when it lands.
 
