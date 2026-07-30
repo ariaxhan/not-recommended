@@ -2,8 +2,10 @@
 query: Cloudflare Workers Static Assets deployment, privacy, and failure modes
 date: 2026-07-16
 ttl: 30
+type: note
+status: active
+created: 2026-07-16
 ---
-
 # Cloudflare static landing failure map
 
 ## Decision

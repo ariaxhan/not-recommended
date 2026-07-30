@@ -1,0 +1,11 @@
+// Parallel landing page deployment — separate worker from the root `site/` deploy.
+// Deploy: npx wrangler deploy --config landing/wrangler.jsonc
+{
+  "name": "not-recommended-landing",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-19
+---
+
 # Product Hunt launch kit — Not Recommended
 
 Status: **DRAFT CREATED on Product Hunt, gated on Apple approval** (iOS + macOS both

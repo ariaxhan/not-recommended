@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — Not Recommended</title>
+  <meta name="description" content="Not Recommended does not collect or transmit personal information. Everything stays in your browser.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="wordmark mono" href="/"><s>Recommended</s>&nbsp;Not Recommended</a>
+    <nav class="mono">
+      <a href="https://github.com/ariaxhan/not-recommended">Source</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main class="prose wrap">
+  <h1>Privacy Policy</h1>
+  <span class="updated mono">Last updated: July 15, 2026</span>
+
+  <p class="lede">Not Recommended does not collect, transmit, sell, or share personal information. There is nothing to opt out of, because nothing is gathered.</p>
+
+  <h2>Data stored locally</h2>
+  <p>The extension stores the following items in <code>chrome.storage.local</code>, on your device only:</p>
+  <ul>
+    <li>display settings;</li>
+    <li>question threads you create;</li>
+    <li>saved YouTube video titles, IDs, URLs, and save times;</li>
+    <li>the most recent intention sentence, if you entered one; and</li>
+    <li>the current Wikipedia detour set and its draw date.</li>
+  </ul>
+  <p>This data stays in the browser profile where the extension is installed. Not Recommended has no account system, backend, analytics, advertising, tracking, or telemetry.</p>
+
+  <h2>Network access</h2>
+  <p>The content script runs on <code>https://www.youtube.com/*</code> to replace and simplify YouTube surfaces. The extension's background worker sends fixed, credential-free requests to <code>https://en.wikipedia.org/w/api.php</code> to retrieve random main-namespace encyclopedia articles.</p>
+  <p>It does not send saved videos, questions, settings, intentions, YouTube activity, or identifiers to Wikipedia. The worker does not accept arbitrary URLs from the page or content script, and it cannot be used as a general network proxy.</p>
+
+  <h2>Third parties</h2>
+  <p>No data is shared with third parties. The extension contains no third-party analytics, advertising SDKs, or remote executable code. Its only outbound requests are the Wikipedia API calls described above.</p>
+
+  <h2>Removing your data</h2>
+  <p>Removing the extension through Chrome removes its local extension storage. Individual question threads and saved videos can also be removed directly from the extension's home screen.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If this policy changes, the updated version will be published at this address with a new date. The commitment above &mdash; no collection, no transmission of personal data &mdash; is the design of the extension, not a configurable setting.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy can be filed as issues on the <a href="https://github.com/ariaxhan/not-recommended">GitHub repository</a>.</p>
+</main>
+
+<footer>
+  <div class="wrap mono">
+    <span>Not Recommended &mdash; made for humans with intentions.</span>
+    <span><a href="https://github.com/ariaxhan/not-recommended">GitHub</a> &middot; <a href="/privacy/">Privacy</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

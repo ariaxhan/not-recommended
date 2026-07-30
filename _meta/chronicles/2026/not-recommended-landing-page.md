@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-16
+---
+
 # Not Recommended landing page
 
 Date: 2026-07-16

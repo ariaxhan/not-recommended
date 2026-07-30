@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-15
+---
+
 # Not Recommended v0.1 plan
 
 ## Goal

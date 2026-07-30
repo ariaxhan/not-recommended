@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-16
+---
+
 # UI cleanup review
 
 reviewed: 2026-07-15

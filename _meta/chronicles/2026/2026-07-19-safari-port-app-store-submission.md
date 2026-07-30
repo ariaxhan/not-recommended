@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-19
+---
+
 # Safari port + App Store submission (iOS & macOS) — 2026-07-19
 
 ## Outcome

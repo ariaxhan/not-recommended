@@ -6,8 +6,9 @@ last_updated: 2026-07-15
 ttl: 30
 channels_run: [A, D]
 entries: 13
+type: note
+created: 2026-07-15
 ---
-
 # Not Recommended extension failure modes
 
 ## TL;DR
