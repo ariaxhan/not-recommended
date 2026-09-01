@@ -171,12 +171,22 @@ nav a {
 }
 
 .release {
+  display: block;
   min-width: 12rem;
   padding: 0.9rem 1rem;
   border: 1px solid var(--ink);
   background: var(--white);
   box-shadow: 0.45rem 0.45rem 0 var(--ink);
+  color: var(--ink);
   line-height: 1.25;
+  text-decoration: none;
+  transition: box-shadow 120ms ease, transform 120ms ease;
+}
+
+.release:hover {
+  box-shadow: 0.25rem 0.25rem 0 var(--ink);
+  color: var(--signal-dark);
+  transform: translate(0.2rem, 0.2rem);
 }
 
 .release span,
